@@ -27,6 +27,6 @@ public class Main {
         // 1 là lớn hơn
         System.out.println("Độ khó targer và hashData là :" + (currentTarget.compareTo(new BigDecimal(new BigInteger(hashCheck, 16))) >= 0));
         System.out.println(new BigDecimal(new BigInteger(hashCheck, 16)));
-        System.out.println(currentTarget.divide(new BigDecimal(new BigInteger(hashCheck, 16))));  
+        System.out.println(currentTarget.divide(new BigDecimal(new BigInteger(hashCheck, 16))));
     }
 }
