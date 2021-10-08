@@ -11,14 +11,15 @@ public class GetNewTarget {
     public static void main(String[] args) {
         int bits = 403108008; // bits chung của khoảng block này
         Integer first = 1457133956;// bits = 403,108,008   block index = 401184
-        Integer last  = 1457291885;// bits = 403,108,008   block index = 403199
+        Integer last = 1458291885;// bits = 403,108,008   block index = 403199
         Integer actual = last - first; //tính số lượng seconds giữa 2 thời điểm của block
         Integer expected = 2016 * 10 * 60; // Tính số thời gian mong muốn của 2016 block
 
         BigDecimal currentTarget = getHexaTargetBigDecimal(bits);
 
-        System.out.println("Difficulty old: " + hexadecimalStartTarget.divide(currentTarget, 2,
-                RoundingMode.HALF_UP));
+        BigDecimal difficultyOld = hexadecimalStartTarget.divide(currentTarget, 2,
+                RoundingMode.HALF_UP);
+        System.out.println("Difficulty old: " + difficultyOld);
 
         float ratio = actual.floatValue() / expected.floatValue(); // Tỉ lệ thay đổi.
         System.out.println("Tỉ lệ thay đổi: " + ratio);
@@ -50,10 +51,13 @@ public class GetNewTarget {
 
         System.out.println("new target: " + newTargetFull);
 
-        //  Difficulty start in block 1 / CurrentTarget new
-        System.out.println("Difficulty new: " + hexadecimalStartTarget.divide(new BigDecimal(new BigInteger(newTargetFull,
+        BigDecimal difficultyNew = hexadecimalStartTarget.divide(new BigDecimal(new BigInteger(newTargetFull,
                         16)), 2,
-                RoundingMode.HALF_UP));
+                RoundingMode.HALF_UP);
+        //  Difficulty start in block 1 / CurrentTarget new
+        System.out.println("Difficulty new: " + difficultyNew);
+        System.out.println("SỐ lượng thay đổi: " + difficultyNew.subtract(difficultyOld));
+
 
     }
 
