@@ -4,6 +4,10 @@ import java.math.RoundingMode;
 
 // Tạo mới start
 public class GetNewTarget {
+
+    static int bitTargetStart = 486604799; // bitTarget start block // Đây là bits của độ khó đầu tiên
+    static final BigDecimal hexadecimalStartTarget = getHexaTargetBigDecimal(bitTargetStart);
+
     public static void main(String[] args) {
         int bits = 403108008; // bits chung của khoảng block này
         Integer first = 1457133956;// bits = 403,108,008   block index = 401184
@@ -13,7 +17,19 @@ public class GetNewTarget {
 
         BigDecimal currentTarget = getHexaTargetBigDecimal(bits);
 
-        BigDecimal newTarget = currentTarget.multiply(new BigDecimal(actual.floatValue() / expected.floatValue()));
+        System.out.println("Difficulty old: " + hexadecimalStartTarget.divide(currentTarget, 2,
+                RoundingMode.HALF_UP));
+
+        float ratio = actual.floatValue() / expected.floatValue(); // Tỉ lệ thay đổi.
+        System.out.println(ratio);
+        // Tối đa thay đổi gâp 4 lần,không thay đổi quá đột biến
+        if (ratio > 4) {
+            ratio = 4;
+        }
+        if (ratio < -4) {
+            ratio = -4;
+        }
+        BigDecimal newTarget = currentTarget.multiply(new BigDecimal(ratio));
         // new difficulty = currentTarget * (actual time / expected time)
 
         // Nếu vượt quá max thì  = max
@@ -33,10 +49,8 @@ public class GetNewTarget {
 
         System.out.println("new target: " + newTargetFull);
 
-        int bitTargetStart = 486604799; // bitTarget start block // Đây là bits của độ khó đầu tiên
-        BigDecimal hexadecimalStartTarget = getHexaTargetBigDecimal(bitTargetStart);
-        //  Difficulty start in block 1 / CurrentTarget
-        System.out.println("Difficulty: " + hexadecimalStartTarget.divide(new BigDecimal(new BigInteger(newTargetFull,
+        //  Difficulty start in block 1 / CurrentTarget new
+        System.out.println("Difficulty new: " + hexadecimalStartTarget.divide(new BigDecimal(new BigInteger(newTargetFull,
                         16)), 2,
                 RoundingMode.HALF_UP));
 
