@@ -11,7 +11,7 @@ public class GetNewTarget {
     public static void main(String[] args) {
         int bits = 403108008; // bits chung của khoảng block này
         Integer first = 1457133956;// bits = 403,108,008   block index = 401184
-        Integer last = 1458291885;// bits = 403,108,008   block index = 403199
+        Integer last  = 1457291885;// bits = 403,108,008   block index = 403199
         Integer actual = last - first; //tính số lượng seconds giữa 2 thời điểm của block
         Integer expected = 2016 * 10 * 60; // Tính số thời gian mong muốn của 2016 block
 
@@ -21,18 +21,19 @@ public class GetNewTarget {
                 RoundingMode.HALF_UP));
 
         float ratio = actual.floatValue() / expected.floatValue(); // Tỉ lệ thay đổi.
-        System.out.println(ratio);
-        // Tối đa thay đổi gâp 4 lần,không thay đổi quá đột biến
+        System.out.println("Tỉ lệ thay đổi: " + ratio);
+        // Tối đa 1 lần thay đổi gâp 4 lần,không thay đổi quá đột biến
         if (ratio > 4) {
             ratio = 4;
         }
-        if (ratio < -4) {
-            ratio = -4;
+        if (ratio < 0.25f) {
+            ratio = 0.25f;
         }
+
         BigDecimal newTarget = currentTarget.multiply(new BigDecimal(ratio));
         // new difficulty = currentTarget * (actual time / expected time)
 
-        // Nếu vượt quá max thì  = max
+        // Nếu vượt quá max thì  = max = 1
         BigDecimal maxTarget = new BigDecimal(new BigInteger("00000000ffff0000000000000000000000000000000000000000000000000000", 16));
         if (newTarget.compareTo(maxTarget) > 0) {
             newTarget = maxTarget;
