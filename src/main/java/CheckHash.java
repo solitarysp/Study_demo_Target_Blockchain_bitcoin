@@ -1,12 +1,11 @@
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-public class Main {
+public class CheckHash {
     public static void main(String[] args) {
         //2 điều kiện đểu 1 hash đc chấp nhận
         //1: Số lượng số 0 ở đầu phải nhiều hơn hoặc = với target
         //2: DecimalData của hash phải nhỏ hơn hoặc = DecimalData của target
-        System.out.println("max target: " + new BigDecimal(new BigInteger("00000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF", 16)));
         int bitTarget = 386803250;
         String hashCheck = "0000000000000000000193d0666a165edb6dacdc64fdeb6f752a13e532c5509e";
 
