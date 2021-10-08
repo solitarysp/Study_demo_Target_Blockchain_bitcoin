@@ -17,9 +17,9 @@ public class GetNewTarget {
 
         BigDecimal currentTarget = getHexaTargetBigDecimal(bits);
 
-        BigDecimal difficultyOld = hexadecimalStartTarget.divide(currentTarget, 2,
+        BigDecimal difficultyOld = hexadecimalStartTarget.divide(currentTarget, 5,
                 RoundingMode.HALF_UP);
-        System.out.println("Difficulty old: " + difficultyOld);
+        System.out.println("Difficulty old:      " + UtilsBlockChainBitcoin.formatBigDecimal(difficultyOld));
 
         float ratio = actual.floatValue() / expected.floatValue(); // Tỉ lệ thay đổi.
         System.out.println("Tỉ lệ thay đổi: " + ratio);
@@ -55,8 +55,8 @@ public class GetNewTarget {
                         16)), 2,
                 RoundingMode.HALF_UP);
         //  Difficulty start in block 1 / CurrentTarget new
-        System.out.println("Difficulty new: " + difficultyNew);
-        System.out.println("SỐ lượng thay đổi: " + difficultyNew.subtract(difficultyOld));
+        System.out.println("Difficulty new:      " + UtilsBlockChainBitcoin.formatBigDecimal(difficultyNew));
+        System.out.println("SỐ lượng thay đổi:   " + UtilsBlockChainBitcoin.formatBigDecimal(difficultyNew.subtract(difficultyOld)));
 
 
     }

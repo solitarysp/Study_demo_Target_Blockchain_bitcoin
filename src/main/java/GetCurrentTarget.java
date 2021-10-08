@@ -13,7 +13,7 @@ public class GetCurrentTarget {
 
         BigDecimal bigDecimal = new BigDecimal(number);
         BigDecimal currentTarget = bigDecimal.multiply(new BigDecimal(2).pow(temp));
-        System.out.println("current target: " + currentTarget);
+        System.out.println("current target:           " + currentTarget);
 
         String hexadecimalCurrentTarget = currentTarget.toBigInteger().toString(16);
         System.out.println("hexadecimalCurrentTarget: " + hexadecimalCurrentTarget);

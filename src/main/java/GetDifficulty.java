@@ -10,7 +10,10 @@ public class GetDifficulty {
         int bitCurrentTarget = 386803250;
         BigDecimal hexadecimalCurrentTarget = getHexaTargetBigDecimal(bitCurrentTarget);
 
-        System.out.println(hexadecimalStartTarget.divide(hexadecimalCurrentTarget,2, RoundingMode.HALF_UP));
+        BigDecimal difficulty = hexadecimalStartTarget.divide(hexadecimalCurrentTarget, 5,
+                RoundingMode.HALF_UP);
+
+        System.out.println("Difficulty hiện tại " + UtilsBlockChainBitcoin.formatBigDecimal(difficulty));
 
     }
 

@@ -24,7 +24,8 @@ public class CheckHash {
 
         // -1 , 0 là nhỏ hơn hoặc =
         // 1 là lớn hơn
-        System.out.println("Độ khó targer và hashData là :" + (currentTarget.compareTo(new BigDecimal(new BigInteger(hashCheck, 16))) >= 0));
-        System.out.println(new BigDecimal(new BigInteger(hashCheck, 16)));
+        BigDecimal bigDecimalHashCheck = new BigDecimal(new BigInteger(hashCheck, 16));
+        System.out.println("hashData:       "+bigDecimalHashCheck);
+        System.out.println("hashData check với độ khó là: " + (currentTarget.compareTo(bigDecimalHashCheck) >= 0));
     }
 }
